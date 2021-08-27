@@ -1,0 +1,24 @@
+{
+  "name": "jackanalyzer",
+  "version": "1.0.0",
+  "description": "A Jack Analyzer used to create a parse tree for the Jack programs, written in the context of the nand2tetris course.",
+  "main": "dist/JackAnalyzer.js",
+  "scripts": {
+    "start": "tsc && node dist/JackAnalyzer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidgbiggs/JackAnalyzer.git"
+  },
+  "author": "David Biggs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidgbiggs/JackAnalyzer/issues"
+  },
+  "homepage": "https://github.com/davidgbiggs/JackAnalyzer#readme",
+  "devDependencies": {
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.2"
+  }
+}
