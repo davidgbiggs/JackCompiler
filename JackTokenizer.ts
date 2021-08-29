@@ -3,6 +3,7 @@ import fs from "fs";
 export default class JackTokenizer {
   fileString: string;
   fileIndex;
+  tokenSet: boolean;
   token: string;
   static jackSymbolMap: JackMap = {
     "{": true,
@@ -51,7 +52,8 @@ export default class JackTokenizer {
 
   /** open the input jack file/stream and get ready to tokenize it */
   constructor(filePath: string) {
-    this.fileString = fs.readFileSync(filePath, { encoding: "utf-8" });
+    this.tokenSet = false;
+    this.fileString = fs.readFileSync(filePath, { encoding: "utf-8" }).trim();
     this.fileIndex = 0;
     this.token = "";
   }
@@ -59,6 +61,11 @@ export default class JackTokenizer {
   /** are there more tokens in the input? */
   hasMoreTokens(): boolean {
     return this.fileIndex < this.fileString.length - 1;
+  }
+
+  setToken(newToken: string): void {
+    this.token = newToken;
+    this.tokenSet = true;
   }
 
   /** Gets the next token from the input,
@@ -69,16 +76,16 @@ export default class JackTokenizer {
    */
   advance(): void {
     const tokenBuilder: string[] = [];
-    const oldToken = this.token;
     const conditionalReassign = (falseFunction: () => void) => {
-      if (tokenBuilder.length) {
-        this.token = tokenBuilder.join("");
+      if (tokenBuilder.length > 0) {
+        this.setToken(tokenBuilder.join(""));
       } else {
         falseFunction();
       }
     };
 
-    while (this.token === oldToken) {
+    this.tokenSet = false;
+    while (!this.tokenSet) {
       const char = this.fileString[this.fileIndex];
       const secondChar = this.fileString[this.fileIndex + 1];
       if (char + secondChar === "/*") {
@@ -99,20 +106,20 @@ export default class JackTokenizer {
             endIndex + 1
           );
           this.fileIndex = endIndex + 1;
-          this.token = stringConstant;
+          this.setToken(stringConstant);
         });
       } else if (JackTokenizer.jackSymbolMap[char]) {
         conditionalReassign(() => {
-          this.fileIndex = this.fileIndex + 1;
-          this.token = char;
+          this.fileIndex++;
+          this.setToken(char);
         });
       } else if (char.match(/\s/)) {
         conditionalReassign(() => {
-          this.fileIndex = this.fileIndex + 1;
+          this.fileIndex++;
         });
       } else {
         tokenBuilder.push(char);
-        this.fileIndex = this.fileIndex + 1;
+        this.fileIndex++;
       }
       if (this.fileIndex === this.fileString.length - 1) {
         conditionalReassign(() => {});
@@ -126,10 +133,10 @@ export default class JackTokenizer {
    */
   tokenType(): TokenType {
     // @ts-ignore
-    if (JackTokenizer.jackSymbolMap[this.token]) {
-      return "symbol";
-    } else if (JackTokenizer.jackKeywordMap[this.token]) {
+    if (JackTokenizer.jackKeywordMap[this.token]) {
       return "keyword";
+    } else if (JackTokenizer.jackSymbolMap[this.token]) {
+      return "symbol";
     } else if (this.token.match(/\d/)) {
       return "int_const";
     } else if (this.token.startsWith(`"`)) {
