@@ -1,5 +1,7 @@
-class CompilationEngine {
-  constructor(inputFile: string, outputFile: string) {
+import JackTokenizer from "./JackTokenizer";
+
+export default class CompilationEngine {
+  constructor(input: JackTokenizer, outputFile: string) {
     /** Creates a new compilation engine with
      * the given input and output.
      * The next routine called (by the

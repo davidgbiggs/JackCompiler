@@ -1,32 +1,32 @@
 type TokenType =
-  | "KEYWORD"
-  | "SYMBOL"
-  | "IDENTIFIER"
-  | "INT_CONST"
-  | "STRING_CONST";
+  | "keyword"
+  | "symbol"
+  | "int_const"
+  | "string_const"
+  | "identifier";
 
 type KeyWord =
-  | "CLASS"
-  | "METHOD"
-  | "FUNCTION"
-  | "CONSTRUCTOR"
-  | "INT"
-  | "BOOLEAN"
-  | "CHAR"
-  | "VOID"
-  | "VAR"
-  | "STATIC"
-  | "FIELD"
-  | "LET"
-  | "DO"
-  | "IF"
-  | "ELSE"
-  | "WHILE"
-  | "RETURN"
-  | "TRUE"
-  | "FALSE"
-  | "NULL"
-  | "THIS";
+  | "class"
+  | "method"
+  | "function"
+  | "constructor"
+  | "int"
+  | "boolean"
+  | "char"
+  | "void"
+  | "var"
+  | "static"
+  | "field"
+  | "let"
+  | "do"
+  | "if"
+  | "else"
+  | "while"
+  | "return"
+  | "true"
+  | "false"
+  | "null"
+  | "this";
 
 type JackSymbol =
   | "{"
@@ -48,3 +48,7 @@ type JackSymbol =
   | ">"
   | "="
   | "~";
+
+interface JackMap {
+  [key: string]: boolean;
+}
