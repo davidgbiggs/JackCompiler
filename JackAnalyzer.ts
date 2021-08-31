@@ -27,47 +27,11 @@ if (fs.existsSync(absolutePath) && fs.lstatSync(absolutePath).isDirectory()) {
   filesToTranslate.push(absolutePath);
 }
 
-function writeCurrentFile(tokenizer: JackTokenizer): string[] {
-  const newCommands: string[] = [];
-  do {
-    tokenizer.advance();
-    if (tokenizer.tokenType() === "keyword") {
-      newCommands.push(`<keyword> ${tokenizer.keyWord()} </keyword>`);
-    } else if (tokenizer.tokenType() === "symbol") {
-      newCommands.push(`<symbol> ${tokenizer.symbol()} </symbol>`);
-    } else if (tokenizer.tokenType() === "identifier") {
-      newCommands.push(`<identifier> ${tokenizer.identifier()} </identifier>`);
-    } else if (tokenizer.tokenType() === "int_const") {
-      newCommands.push(
-        `<integerConstant> ${tokenizer.intVal()} </integerConstant>`
-      );
-    } else if (tokenizer.tokenType() === "string_const") {
-      newCommands.push(
-        `<stringConstant> ${tokenizer.stringVal()} </stringConstant>`
-      );
-    }
-  } while (tokenizer.hasMoreTokens());
-  return newCommands;
-}
-
 filesToTranslate.forEach((filePath: string) => {
   const fileName = filePath.split(/(.+)(.jack)/)[1];
-  const writeFilePath = path.resolve(fileName + "TT" + ".xml");
+  const writeFilePath = path.resolve(fileName + ".xml");
 
-  //   const compEngine = new CompilationEngine(filePath, writeFilePath);
   const tokenizer = new JackTokenizer(filePath);
-  const newCommands = writeCurrentFile(tokenizer);
-
-  fs.writeFile(
-    writeFilePath,
-    "<tokens>\n" + newCommands.join("\n") + "\n</tokens>",
-    (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      } else {
-        // console.log("file written");
-      }
-    }
-  );
+  const compEngine = new CompilationEngine(tokenizer, writeFilePath);
+  compEngine.compileClass();
 });
