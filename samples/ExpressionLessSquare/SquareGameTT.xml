@@ -1,23 +1,23 @@
 <class>
 <keyword> class </keyword>
-<identifier> SquareGame </identifier>
+<identifier> SquareGame, category: class, index: no index, context: defined </identifier>
 <symbol> { </symbol>
 <classVarDec>
 <keyword> field </keyword>
-<identifier> Square </identifier>
-<identifier> square </identifier>
+<identifier> Square, category: undefined, index: undefined, context: undefined </identifier>
+<identifier> square, category: field, index: 0, context: defined </identifier>
 <symbol> ; </symbol>
 </classVarDec>
 <classVarDec>
 <keyword> field </keyword>
 <keyword> int </keyword>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: defined </identifier>
 <symbol> ; </symbol>
 </classVarDec>
 <subroutineDec>
 <keyword> constructor </keyword>
-<identifier> SquareGame </identifier>
-<identifier> new </identifier>
+<identifier> SquareGame, category: undefined, index: undefined, context: undefined </identifier>
+<identifier> new, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -27,22 +27,22 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> square </identifier>
+<identifier> square, category: field, index: 0, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> square </identifier>
+<identifier> square, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -51,7 +51,7 @@
 <keyword> return </keyword>
 <expression>
 <term>
-<identifier> square </identifier>
+<identifier> square, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -63,7 +63,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> dispose </identifier>
+<identifier> dispose, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -73,9 +73,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> dispose </identifier>
+<identifier> dispose, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -84,14 +84,14 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Memory </identifier>
+<identifier> Memory, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> deAlloc </identifier>
+<identifier> deAlloc, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> square </identifier>
+<identifier> square, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -109,7 +109,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> moveSquare </identifier>
+<identifier> moveSquare, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -122,7 +122,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -130,9 +130,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> moveUp </identifier>
+<identifier> moveUp, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -147,7 +147,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -155,9 +155,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> moveDown </identifier>
+<identifier> moveDown, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -172,7 +172,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -180,9 +180,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> moveLeft </identifier>
+<identifier> moveLeft, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -197,7 +197,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -205,9 +205,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> moveRight </identifier>
+<identifier> moveRight, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -219,14 +219,14 @@
 </ifStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Sys </identifier>
+<identifier> Sys, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> wait </identifier>
+<identifier> wait, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -244,7 +244,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> run </identifier>
+<identifier> run, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -254,23 +254,23 @@
 <varDec>
 <keyword> var </keyword>
 <keyword> char </keyword>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: defined </identifier>
 <symbol> ; </symbol>
 </varDec>
 <varDec>
 <keyword> var </keyword>
 <keyword> boolean </keyword>
-<identifier> exit </identifier>
+<identifier> exit, category: var, index: 1, context: defined </identifier>
 <symbol> ; </symbol>
 </varDec>
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> exit </identifier>
+<identifier> exit, category: var, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -280,7 +280,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> exit </identifier>
+<identifier> exit, category: var, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -291,7 +291,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -299,18 +299,18 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> moveSquare </identifier>
+<identifier> moveSquare, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -325,7 +325,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -333,11 +333,11 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> exit </identifier>
+<identifier> exit, category: var, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> exit </identifier>
+<identifier> exit, category: var, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -350,7 +350,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -358,9 +358,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> decSize </identifier>
+<identifier> decSize, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -375,7 +375,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -383,9 +383,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> square </identifier>
+<identifier> square, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> incSize </identifier>
+<identifier> incSize, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -400,7 +400,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -408,11 +408,11 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> exit </identifier>
+<identifier> exit, category: var, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -425,7 +425,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -433,11 +433,11 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -450,7 +450,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -458,11 +458,11 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> square </identifier>
+<identifier> square, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -475,7 +475,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -483,11 +483,11 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> direction </identifier>
+<identifier> direction, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -500,7 +500,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -508,18 +508,18 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> key </identifier>
+<identifier> key, category: var, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> moveSquare </identifier>
+<identifier> moveSquare, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>

@@ -52,3 +52,15 @@ type JackSymbol =
 interface JackMap {
   [key: string]: boolean;
 }
+
+interface SymbolMap {
+  [key: string]: SymbolEntry;
+}
+
+type SymbolEntry = {
+  type: string;
+  kind: SymbolKind;
+  index: number;
+};
+
+type SymbolKind = "static" | "field" | "arg" | "var";

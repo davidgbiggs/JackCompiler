@@ -1,35 +1,35 @@
 <class>
 <keyword> class </keyword>
-<identifier> Square </identifier>
+<identifier> Square, category: class, index: no index, context: defined </identifier>
 <symbol> { </symbol>
 <classVarDec>
 <keyword> field </keyword>
 <keyword> int </keyword>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: defined </identifier>
 <symbol> , </symbol>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: defined </identifier>
 <symbol> ; </symbol>
 </classVarDec>
 <classVarDec>
 <keyword> field </keyword>
 <keyword> int </keyword>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: defined </identifier>
 <symbol> ; </symbol>
 </classVarDec>
 <subroutineDec>
 <keyword> constructor </keyword>
-<identifier> Square </identifier>
-<identifier> new </identifier>
+<identifier> Square, category: undefined, index: undefined, context: undefined </identifier>
+<identifier> new, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 <keyword> int </keyword>
-<identifier> Ax </identifier>
+<identifier> Ax, category: arg, index: 0, context: defined </identifier>
 <symbol> , </symbol>
 <keyword> int </keyword>
-<identifier> Ay </identifier>
+<identifier> Ay, category: arg, index: 1, context: defined </identifier>
 <symbol> , </symbol>
 <keyword> int </keyword>
-<identifier> Asize </identifier>
+<identifier> Asize, category: arg, index: 2, context: defined </identifier>
 </parameterList>
 <symbol> ) </symbol>
 <subroutineBody>
@@ -37,40 +37,40 @@
 <statements>
 <letStatement>
 <keyword> let </keyword>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> Ax </identifier>
+<identifier> Ax, category: arg, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> Ay </identifier>
+<identifier> Ay, category: arg, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> Asize </identifier>
+<identifier> Asize, category: arg, index: 2, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> draw </identifier>
+<identifier> draw, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -81,7 +81,7 @@
 <keyword> return </keyword>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
@@ -93,7 +93,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> dispose </identifier>
+<identifier> dispose, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -103,9 +103,9 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Memory </identifier>
+<identifier> Memory, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> deAlloc </identifier>
+<identifier> deAlloc, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
@@ -128,7 +128,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> draw </identifier>
+<identifier> draw, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -138,14 +138,14 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -154,32 +154,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -197,7 +197,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> erase </identifier>
+<identifier> erase, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -207,14 +207,14 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -223,32 +223,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -266,7 +266,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> incSize </identifier>
+<identifier> incSize, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -279,7 +279,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -287,7 +287,7 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> erase </identifier>
+<identifier> erase, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -296,18 +296,18 @@
 </doStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> draw </identifier>
+<identifier> draw, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -328,7 +328,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> decSize </identifier>
+<identifier> decSize, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -341,7 +341,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -349,7 +349,7 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> erase </identifier>
+<identifier> erase, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -358,18 +358,18 @@
 </doStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> size </identifier>
+<identifier> size, category: field, index: 2, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> draw </identifier>
+<identifier> draw, subroutine, no index, used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 </expressionList>
@@ -390,7 +390,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> moveUp </identifier>
+<identifier> moveUp, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -403,7 +403,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -411,14 +411,14 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -427,32 +427,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -461,25 +461,25 @@
 </doStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -488,32 +488,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -534,7 +534,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> moveDown </identifier>
+<identifier> moveDown, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -547,7 +547,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -555,14 +555,14 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -571,32 +571,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -605,25 +605,25 @@
 </doStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -632,32 +632,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -678,7 +678,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> moveLeft </identifier>
+<identifier> moveLeft, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -691,7 +691,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -699,14 +699,14 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -715,32 +715,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -749,25 +749,25 @@
 </doStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -776,32 +776,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -822,7 +822,7 @@
 <subroutineDec>
 <keyword> method </keyword>
 <keyword> void </keyword>
-<identifier> moveRight </identifier>
+<identifier> moveRight, category: subroutine, index: no index, context: defined </identifier>
 <symbol> ( </symbol>
 <parameterList>
 </parameterList>
@@ -835,7 +835,7 @@
 <symbol> ( </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ) </symbol>
@@ -843,14 +843,14 @@
 <statements>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -859,32 +859,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -893,25 +893,25 @@
 </doStatement>
 <letStatement>
 <keyword> let </keyword>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: defined </identifier>
 <symbol> = </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> ; </symbol>
 </letStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> setColor </identifier>
+<identifier> setColor, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 </expressionList>
@@ -920,32 +920,32 @@
 </doStatement>
 <doStatement>
 <keyword> do </keyword>
-<identifier> Screen </identifier>
+<identifier> Screen, class, no index, used </identifier>
 <symbol> . </symbol>
-<identifier> drawRectangle </identifier>
+<identifier> drawRectangle, category: subroutine, index: no index, context: used </identifier>
 <symbol> ( </symbol>
 <expressionList>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> x </identifier>
+<identifier> x, category: field, index: 0, context: used </identifier>
 </term>
 </expression>
 <symbol> , </symbol>
 <expression>
 <term>
-<identifier> y </identifier>
+<identifier> y, category: field, index: 1, context: used </identifier>
 </term>
 </expression>
 </expressionList>

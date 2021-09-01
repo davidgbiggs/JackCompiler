@@ -29,7 +29,7 @@ if (fs.existsSync(absolutePath) && fs.lstatSync(absolutePath).isDirectory()) {
 
 filesToTranslate.forEach((filePath: string) => {
   const fileName = filePath.split(/(.+)(.jack)/)[1];
-  const writeFilePath = path.resolve(fileName + ".xml");
+  const writeFilePath = path.resolve(fileName + "TT.xml");
 
   const tokenizer = new JackTokenizer(filePath);
   const compEngine = new CompilationEngine(tokenizer, writeFilePath);

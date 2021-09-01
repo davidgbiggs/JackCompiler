@@ -1,9 +1,13 @@
 import fs from "fs";
 import JackTokenizer from "./JackTokenizer";
+import SymbolTable from "./SymbolTable";
 
 export default class CompilationEngine {
   input: JackTokenizer;
+  classTable: SymbolTable;
+  subTable: SymbolTable;
   newCommands: string[];
+  className: string;
   writeFilePath: string;
 
   static statementKeyword: JackMap = {
@@ -45,6 +49,9 @@ export default class CompilationEngine {
    * compileClass
    */
   constructor(tokenizer: JackTokenizer, _writeFilePath: string) {
+    this.className = "";
+    this.classTable = new SymbolTable();
+    this.subTable = new SymbolTable();
     this.input = tokenizer;
     this.input.advance();
     this.newCommands = [];
@@ -59,7 +66,12 @@ export default class CompilationEngine {
     }
   }
 
-  #writeAndAdvance(expected: () => boolean) {
+  #writeAndAdvance(
+    expected: () => boolean,
+    category?: "class" | "subroutine" | SymbolKind,
+    index?: number | "no index",
+    context?: "defined" | "used"
+  ) {
     if (!expected()) {
       console.log(
         this.newCommands.slice(Math.max(this.newCommands.length - 10, 1))
@@ -73,7 +85,7 @@ export default class CompilationEngine {
         this.newCommands.push(`<symbol> ${this.input.symbol()} </symbol>`);
       } else if (this.input.tokenType() === "identifier") {
         this.newCommands.push(
-          `<identifier> ${this.input.identifier()} </identifier>`
+          `<identifier> ${this.input.identifier()}, category: ${category}, index: ${index}, context: ${context} </identifier>`
         );
       } else if (this.input.tokenType() === "int_const") {
         this.newCommands.push(
@@ -103,7 +115,13 @@ export default class CompilationEngine {
   compileClass(): void {
     this.#writeTag("class", true);
     this.#writeAndAdvance(() => this.input.token === "class");
-    this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+    this.className = this.input.token;
+    this.#writeAndAdvance(
+      () => this.input.tokenType() === "identifier",
+      "class",
+      "no index",
+      "defined"
+    );
     this.#writeAndAdvance(() => this.input.token === "{");
     while (this.input.token === "static" || this.input.token === "field") {
       this.compileClassVarDec();
@@ -126,18 +144,41 @@ export default class CompilationEngine {
   compileClassVarDec(): void {
     const tagName = "classVarDec";
     this.#writeTag(tagName, true);
+    // @ts-ignore
+    const kind: SymbolKind = this.input.token;
     this.#writeAndAdvance(
       () => this.input.token === "static" || this.input.token === "field"
     );
+    // @ts-ignore
+    const type: SymbolType = this.input.token;
+    if (this.input.tokenType() === "identifier") {
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        "class",
+        "no index",
+        "used"
+      );
+    } else {
+      this.#writeAndAdvance(() => this.input.tokenType() === "keyword");
+    }
+    let name = this.input.token;
+    this.classTable.define(name, type, kind);
     this.#writeAndAdvance(
-      () =>
-        this.input.tokenType() === "keyword" ||
-        this.input.tokenType() === "identifier"
+      () => this.input.tokenType() === "identifier",
+      kind,
+      this.classTable.indexOf(name),
+      "defined"
     );
-    this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
     while (this.input.token === ",") {
       this.#writeAndAdvance(() => this.input.token === ",");
-      this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+      let name = this.input.token;
+      this.classTable.define(name, type, kind);
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        kind,
+        this.classTable.indexOf(name),
+        "defined"
+      );
     }
     this.#writeAndAdvance(() => this.input.token === ";");
     this.#writeTag(tagName, false);
@@ -148,18 +189,32 @@ export default class CompilationEngine {
    */
   compileSubroutine(): void {
     this.#writeTag("subroutineDec", true);
+    if (this.input.token === "method") {
+      this.subTable.define("this", this.className, "arg");
+    }
+    const isConstructor = this.input.token === "constructor";
     this.#writeAndAdvance(
       () =>
         this.input.token === "constructor" ||
         this.input.token === "function" ||
         this.input.token === "method"
     );
+    if (isConstructor) {
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        "class",
+        "no index",
+        "used"
+      );
+    } else {
+      this.#writeAndAdvance(() => this.input.tokenType() === "keyword");
+    }
     this.#writeAndAdvance(
-      () =>
-        this.input.tokenType() === "keyword" ||
-        this.input.tokenType() === "identifier"
+      () => this.input.tokenType() === "identifier",
+      "subroutine",
+      "no index",
+      "defined"
     );
-    this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
     this.#writeAndAdvance(() => this.input.token === "(");
     this.compileParameterList();
     this.#writeAndAdvance(() => this.input.token === ")");
@@ -175,14 +230,22 @@ export default class CompilationEngine {
     this.#writeTag("parameterList", true);
     let paramsRemain = this.input.token !== ")";
     while (paramsRemain) {
+      const type = this.input.token;
       this.#writeAndAdvance(
         () =>
           this.input.tokenType() === "keyword" ||
           this.input.tokenType() === "identifier"
       );
-      this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+      const name = this.input.token;
+      this.subTable.define(name, type, "arg");
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        "arg",
+        this.subTable.indexOf(name),
+        "defined"
+      );
       if (this.input.token === ",") {
-        this.#writeAndAdvance(() => true);
+        this.#writeAndAdvance(() => this.input.token === ",");
       } else {
         paramsRemain = false;
       }
@@ -199,6 +262,7 @@ export default class CompilationEngine {
     }
     this.compileStatements();
     this.#writeAndAdvance(() => this.input.token === "}");
+    this.subTable.reset();
     this.#writeTag("subroutineBody", false);
   }
 
@@ -206,15 +270,35 @@ export default class CompilationEngine {
   compileVarDec(): void {
     this.#writeTag("varDec", true);
     this.#writeAndAdvance(() => this.input.token === "var");
+    const type = this.input.token;
+    if (this.input.tokenType() === "identifier") {
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        "class",
+        "no index",
+        "used"
+      );
+    } else {
+      this.#writeAndAdvance(() => this.input.tokenType() === "keyword");
+    }
+    let name = this.input.token;
+    this.subTable.define(name, type, "var");
     this.#writeAndAdvance(
-      () =>
-        this.input.tokenType() === "keyword" ||
-        this.input.tokenType() === "identifier"
+      () => this.input.tokenType() === "identifier",
+      "var",
+      this.subTable.indexOf(name),
+      "defined"
     );
-    this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
     while (this.input.token === ",") {
       this.#writeAndAdvance(() => this.input.token === ",");
-      this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+      let name = this.input.token;
+      this.subTable.define(name, type, "var");
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        "var",
+        this.subTable.indexOf(name),
+        "defined"
+      );
     }
     this.#writeAndAdvance(() => this.input.token === ";");
     this.#writeTag("varDec", false);
@@ -248,7 +332,25 @@ export default class CompilationEngine {
   compileLet(): void {
     this.#writeTag("letStatement", true);
     this.#writeAndAdvance(() => this.input.token === "let");
-    this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+    let name = this.input.token;
+    let kind;
+    let index;
+    if (this.subTable.kindOf(name) !== "none") {
+      kind = this.subTable.kindOf(name);
+      index = this.subTable.indexOf(name);
+    } else if (this.classTable.kindOf(name) !== "none") {
+      kind = this.classTable.kindOf(name);
+      index = this.classTable.indexOf(name);
+    } else {
+      throw new Error("let assignment to unknown variable");
+    }
+    this.#writeAndAdvance(
+      () => this.input.tokenType() === "identifier",
+      // @ts-ignore
+      kind,
+      index,
+      "defined"
+    );
     if (this.input.token === "[") {
       this.#writeAndAdvance(() => this.input.token === "[");
       this.compileExpression();
@@ -281,8 +383,8 @@ export default class CompilationEngine {
     this.#writeTag("ifStatement", false);
   }
 
+  /** Compiles a while statement. */
   compileWhile(): void {
-    /** Compiles a while statement. */
     this.#writeTag("whileStatement", true);
     this.#writeAndAdvance(() => this.input.token === "while");
     this.#writeAndAdvance(() => this.input.token === "(");
@@ -294,40 +396,44 @@ export default class CompilationEngine {
     this.#writeTag("whileStatement", false);
   }
 
+  /** Compiles a do statement. */
   compileDo(): void {
-    /** Compiles a do statement. */
     this.#writeTag("doStatement", true);
     this.#writeAndAdvance(() => this.input.token === "do");
-    this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
-    if (this.input.token === "(") {
-      this.#writeAndAdvance(() => this.input.token === "(");
-      // @ts-ignore
-      if (this.input.token !== ")") {
-        this.compileExpressionList();
-      } else {
-        this.#writeTag("expressionList", true);
-        this.#writeTag("expressionList", false);
-      }
-      this.#writeAndAdvance(() => this.input.token === ")");
-    } else if (this.input.token === ".") {
+    // check if it's a class or subroutine
+    const oldToken = this.input.token;
+    this.input.advance();
+    if (this.input.token === ".") {
+      this.newCommands.push(
+        `<identifier> ${oldToken}, category: class, index: no index, context: used </identifier>`
+      );
       this.#writeAndAdvance(() => this.input.token === ".");
-      this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
-      this.#writeAndAdvance(() => this.input.token === "(");
-      // @ts-ignore
-      if (this.input.token !== ")") {
-        this.compileExpressionList();
-      } else {
-        this.#writeTag("expressionList", true);
-        this.#writeTag("expressionList", false);
-      }
-      this.#writeAndAdvance(() => this.input.token === ")");
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        "subroutine",
+        "no index",
+        "used"
+      );
+    } else {
+      this.newCommands.push(
+        `<identifier> ${oldToken}, category: subroutine, index: no index, context: used </identifier>`
+      );
     }
+    this.#writeAndAdvance(() => this.input.token === "(");
+    // @ts-ignore
+    if (this.input.token !== ")") {
+      this.compileExpressionList();
+    } else {
+      this.#writeTag("expressionList", true);
+      this.#writeTag("expressionList", false);
+    }
+    this.#writeAndAdvance(() => this.input.token === ")");
     this.#writeAndAdvance(() => this.input.token === ";");
     this.#writeTag("doStatement", false);
   }
 
+  /** Compiles a return statement. */
   compileReturn(): void {
-    /** Compiles a return statement. */
     this.#writeTag("returnStatement", true);
     this.#writeAndAdvance(() => this.input.token === "return");
     if (this.input.token !== ";") {
@@ -337,8 +443,8 @@ export default class CompilationEngine {
     this.#writeTag("returnStatement", false);
   }
 
+  /** Compiles an expression. */
   compileExpression(): void {
-    /** Compiles an expression. */
     this.#writeTag("expression", true);
     this.compileTerm();
     while (CompilationEngine.ops[this.input.token]) {
@@ -348,16 +454,16 @@ export default class CompilationEngine {
     this.#writeTag("expression", false);
   }
 
+  /** Compiles a term. If the current token is
+   * an identifier, the routine must resolve it
+   * into a variable, an array element, or a
+   * subroutine call. A single lookahead
+   * token, which may be [, (, or ., suffices
+   * to distinguish between the possibilities.
+   * Any other token is not part of this term
+   * and should not be advanced over.
+   */
   compileTerm(): void {
-    /** Compiles a term. If the current token is
-     * an identifier, the routine must resolve it
-     * into a variable, an array element, or a
-     * subroutine call. A single lookahead
-     * token, which may be [, (, or ., suffices
-     * to distinguish between the possibilities.
-     * Any other token is not part of this term
-     * and should not be advanced over.
-     */
     this.#writeTag("term", true);
     if (this.input.tokenType() === "int_const") {
       this.#writeAndAdvance(() => this.input.tokenType() === "int_const");
@@ -375,10 +481,39 @@ export default class CompilationEngine {
       this.compileExpression();
       this.#writeAndAdvance(() => this.input.token === ")");
     } else if (this.input.tokenType() === "identifier") {
-      this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+      let name = this.input.token;
+      let kind;
+      let index;
+      if (this.subTable.kindOf(name) !== "none") {
+        kind = this.subTable.kindOf(name);
+        index = this.subTable.indexOf(name);
+      } else if (this.classTable.kindOf(name) !== "none") {
+        kind = this.classTable.kindOf(name);
+        index = this.classTable.indexOf(name);
+      } else {
+        index = "no index";
+        // class or subroutine identifier
+        if (this.input.token[0].toUpperCase() === this.input.token[0]) {
+          kind = "class";
+        } else {
+          kind = "subroutine";
+        }
+      }
+      this.#writeAndAdvance(
+        () => this.input.tokenType() === "identifier",
+        // @ts-ignore
+        kind,
+        index,
+        "used"
+      );
       if (this.input.token === ".") {
         this.#writeAndAdvance(() => this.input.token === ".");
-        this.#writeAndAdvance(() => this.input.tokenType() === "identifier");
+        this.#writeAndAdvance(
+          () => this.input.tokenType() === "identifier",
+          "subroutine",
+          "no index",
+          "used"
+        );
         this.#writeAndAdvance(() => this.input.token === "(");
         // @ts-ignore
         if (this.input.token !== ")") {
@@ -407,11 +542,11 @@ export default class CompilationEngine {
     this.#writeTag("term", false);
   }
 
+  /** Compiles a (possibly empty) comma-
+   * separated list of expressions. Returns
+   * the number of expressions in the list.
+   */
   compileExpressionList(): number {
-    /** Compiles a (possibly empty) comma-
-     * separated list of expressions. Returns
-     * the number of expressions in the list.
-     */
     let count = 1;
     this.#writeTag("expressionList", true);
     this.compileExpression();
