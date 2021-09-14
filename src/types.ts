@@ -53,6 +53,10 @@ interface JackMap {
   [key: string]: boolean;
 }
 
+interface opToVMMap {
+  [key: string]: VMOperation;
+}
+
 interface SymbolMap {
   [key: string]: SymbolEntry;
 }
@@ -64,3 +68,24 @@ type SymbolEntry = {
 };
 
 type SymbolKind = "static" | "field" | "arg" | "var";
+
+type VMSegment =
+  | "constant"
+  | "argument"
+  | "local"
+  | "static"
+  | "this"
+  | "that"
+  | "pointer"
+  | "temp";
+
+type VMOperation =
+  | "add"
+  | "sub"
+  | "neg"
+  | "eq"
+  | "lt"
+  | "and"
+  | "or"
+  | "not"
+  | "gt";

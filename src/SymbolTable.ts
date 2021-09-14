@@ -5,6 +5,9 @@ export default class SymbolTable {
   staticNum: number;
   varNum: number;
   fieldNum: number;
+  subType: string;
+  returnType: string;
+  subName: string;
 
   symbolMap: SymbolMap;
 
@@ -13,10 +16,16 @@ export default class SymbolTable {
     this.argNum = 0;
     this.varNum = 0;
     this.fieldNum = 0;
+    this.subType = "";
+    this.returnType = "";
+    this.subName = "";
     this.symbolMap = {};
   }
 
-  reset(): void {
+  reset(subType: string, returnType: string, subName: string): void {
+    this.subType = subType;
+    this.returnType = returnType;
+    this.subName = subName;
     this.symbolMap = {};
     this.argNum = 0;
     this.staticNum = 0;
@@ -45,18 +54,33 @@ export default class SymbolTable {
 
   varCount(kind: SymbolKind): number {
     if (kind === "arg") {
-      return this.argNum + 1;
+      return this.argNum;
     } else if (kind === "field") {
-      return this.argNum + 1;
+      return this.fieldNum;
     } else if (kind === "static") {
-      return this.argNum + 1;
+      return this.staticNum;
     } else {
-      return this.argNum + 1;
+      return this.varNum;
     }
   }
 
-  kindOf(name: string): SymbolKind | "none" {
-    return this.symbolMap[name] ? this.symbolMap[name].kind : "none";
+  kindOf(name: string): VMSegment | "none" {
+    if (this.symbolMap[name]) {
+      const kind = this.symbolMap[name].kind;
+      if (kind === "field") {
+        return "this";
+      } else if (kind === "arg") {
+        return "argument";
+      } else if (kind === "var") {
+        return "local";
+      } else if (kind === "static") {
+        return "static";
+      } else {
+        throw new Error("unexpected variable type");
+      }
+    } else {
+      return "none";
+    }
   }
 
   typeOf(name: string): string {

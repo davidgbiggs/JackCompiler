@@ -133,14 +133,14 @@ export default class JackTokenizer {
    */
   tokenType(): TokenType {
     // @ts-ignore
-    if (JackTokenizer.jackKeywordMap[this.token]) {
-      return "keyword";
+    if (this.token.startsWith(`"`)) {
+      return "string_const";
     } else if (JackTokenizer.jackSymbolMap[this.token]) {
       return "symbol";
     } else if (this.token.match(/\d/)) {
       return "int_const";
-    } else if (this.token.startsWith(`"`)) {
-      return "string_const";
+    } else if (JackTokenizer.jackKeywordMap[this.token]) {
+      return "keyword";
     } else {
       return "identifier";
     }

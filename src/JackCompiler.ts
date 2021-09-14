@@ -3,6 +3,7 @@ import path from "path";
 const readFileName = process.argv[2];
 import JackTokenizer from "./JackTokenizer";
 import CompilationEngine from "./CompilationEngine";
+import { VMWriter } from "./VMWriter";
 
 // @ts-ignore
 const absolutePath = path.resolve(process.env.PWD, readFileName);
@@ -29,9 +30,10 @@ if (fs.existsSync(absolutePath) && fs.lstatSync(absolutePath).isDirectory()) {
 
 filesToTranslate.forEach((filePath: string) => {
   const fileName = filePath.split(/(.+)(.jack)/)[1];
-  const writeFilePath = path.resolve(fileName + "TT.xml");
+  const writeFilePath = path.resolve(fileName + ".vm");
 
   const tokenizer = new JackTokenizer(filePath);
-  const compEngine = new CompilationEngine(tokenizer, writeFilePath);
+  const writer = new VMWriter(writeFilePath);
+  const compEngine = new CompilationEngine(tokenizer, writer);
   compEngine.compileClass();
 });
