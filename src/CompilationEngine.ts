@@ -89,30 +89,9 @@ export default class CompilationEngine {
     context?: "defined" | "used"
   ) {
     if (!expected()) {
-      console
-        .log
-        // this.newCommands.slice(Math.max(this.newCommands.length - 10, 1))
-        ();
       console.log("token: ", this.input.token);
       throw new Error("unexpected token");
     } else {
-      if (this.input.tokenType() === "keyword") {
-        // this.newCommands.push(`<keyword> ${this.input.keyWord()} </keyword>`);
-      } else if (this.input.tokenType() === "symbol") {
-        // this.newCommands.push(`<symbol> ${this.input.symbol()} </symbol>`);
-      } else if (this.input.tokenType() === "identifier") {
-        // this.newCommands.push(
-        //   `<identifier> ${this.input.identifier()}, category: ${category}, index: ${index}, context: ${context} </identifier>`
-        // );
-      } else if (this.input.tokenType() === "int_const") {
-        // this.newCommands.push(
-        //   `<integerConstant> ${this.input.intVal()} </integerConstant>`
-        // );
-      } else if (this.input.tokenType() === "string_const") {
-        // this.newCommands.push(
-        //   `<stringConstant> ${this.input.stringVal()} </stringConstant>`
-        // );
-      }
       this.input.advance();
     }
   }
